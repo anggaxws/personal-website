@@ -262,8 +262,7 @@ const applyTheme = (theme) => {
 };
 
 const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-applyTheme(storedTheme || (prefersLight ? "light" : "dark"));
+applyTheme(storedTheme || "dark");
 
 if (themeToggleBtn) {
   themeToggleBtn.addEventListener("click", () => {
