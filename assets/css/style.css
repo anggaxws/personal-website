@@ -544,6 +544,20 @@ main {
 
 .service-icon-box img { margin: auto; }
 
+.service-icon-box ion-icon {
+  display: block;
+  margin: auto;
+  font-size: 32px;
+  color: var(--orange-yellow-crayola);
+}
+
+.service-icon-box i {
+  display: block;
+  margin: auto;
+  font-size: 36px;
+  color: var(--orange-yellow-crayola);
+}
+
 .service-content-box { text-align: center; }
 
 .service-item-title { margin-bottom: 7px; }
