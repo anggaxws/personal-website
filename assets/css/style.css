@@ -338,7 +338,8 @@ main {
 
 .info-content .name {
   color: var(--white-2);
-  font-size: var(--fs-3);
+  /* font-size: clamp(20px, 2.6vw, 26px); */
+  font-size: 18px;
   font-weight: var(--fw-500);
   letter-spacing: -0.25px;
   margin-bottom: 10px;
@@ -573,6 +574,74 @@ main {
   font-size: var(--fs-6);
   font-weight: var(--fw-3);
   line-height: 1.6;
+}
+
+.certificates-slider {
+  position: relative;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.cert-slider-track {
+  display: flex;
+  gap: 16px;
+  transition: transform var(--transition-2);
+  will-change: transform;
+}
+
+.cert-slide {
+  flex: 0 0 auto;
+  width: 100%;
+  background: var(--bg-gradient-jet);
+  border-radius: 14px;
+  box-shadow: var(--shadow-2);
+  padding: 18px;
+}
+
+.cert-slide a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+  text-align: center;
+  color: var(--white-2);
+  font-weight: var(--fw-500);
+  transition: color var(--transition-1);
+}
+
+.cert-slide a:hover,
+.cert-slide a:focus-visible {
+  color: var(--orange-yellow-crayola);
+}
+
+.cert-slider-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cert-slider-btn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--onyx);
+  color: var(--white-2);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  cursor: pointer;
+  transition: background var(--transition-1), border-color var(--transition-1), color var(--transition-1);
+}
+
+.cert-slider-btn:not(:disabled):hover,
+.cert-slider-btn:not(:disabled):focus-visible {
+  border-color: var(--orange-yellow-crayola);
+  color: var(--orange-yellow-crayola);
+}
+
+.cert-slider-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 

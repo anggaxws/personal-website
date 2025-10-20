@@ -150,8 +150,12 @@ const pages = document.querySelectorAll("[data-page]");
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
+    const targetPage = this.dataset.navLink || this.textContent.trim().toLowerCase();
+
     for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+      const pageName = pages[i].dataset.page;
+
+      if (targetPage === pageName) {
         pages[i].classList.add("active");
         navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
@@ -162,4 +166,66 @@ for (let i = 0; i < navigationLinks.length; i++) {
     }
 
   });
+}
+
+
+
+// certifications slider
+const certTrack = document.querySelector("[data-cert-track]");
+const certSlides = certTrack ? Array.from(certTrack.children) : [];
+const certPrevBtn = document.querySelector("[data-cert-prev]");
+const certNextBtn = document.querySelector("[data-cert-next]");
+
+if (certTrack && certSlides.length && certPrevBtn && certNextBtn) {
+  let certIndex = 0;
+  let slidesToShow = 1;
+  let slideWidth = 0;
+
+  const updateCertSlider = () => {
+    const sliderViewport = certTrack.parentElement;
+    const trackStyles = window.getComputedStyle(certTrack);
+    const gap =
+      parseFloat(trackStyles.columnGap || trackStyles.gap || "0") || 0;
+    const viewportWidth = sliderViewport.getBoundingClientRect().width;
+
+    if (window.innerWidth >= 1250) {
+      slidesToShow = Math.min(3, certSlides.length);
+    } else if (window.innerWidth >= 768) {
+      slidesToShow = Math.min(2, certSlides.length);
+    } else {
+      slidesToShow = 1;
+    }
+
+    slideWidth =
+      slidesToShow > 0
+        ? (viewportWidth - gap * (slidesToShow - 1)) / slidesToShow
+        : viewportWidth;
+
+    certSlides.forEach((slide) => {
+      slide.style.width = `${slideWidth}px`;
+    });
+
+    const maxIndex = Math.max(0, certSlides.length - slidesToShow);
+    if (certIndex > maxIndex) certIndex = maxIndex;
+
+    const offset = certIndex * (slideWidth + gap);
+    certTrack.style.transform = `translateX(-${offset}px)`;
+
+    certPrevBtn.disabled = certIndex === 0;
+    certNextBtn.disabled = certIndex === maxIndex;
+  };
+
+  certPrevBtn.addEventListener("click", () => {
+    certIndex = Math.max(0, certIndex - 1);
+    updateCertSlider();
+  });
+
+  certNextBtn.addEventListener("click", () => {
+    const maxIndex = Math.max(0, certSlides.length - slidesToShow);
+    certIndex = Math.min(maxIndex, certIndex + 1);
+    updateCertSlider();
+  });
+
+  window.addEventListener("resize", updateCertSlider);
+  updateCertSlider();
 }
