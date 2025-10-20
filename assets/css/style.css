@@ -555,8 +555,9 @@ main {
   display: block;
   margin: auto;
   font-size: 36px;
-  color: var(--orange-yellow-crayola);
 }
+
+.service-icon-box i:not(.colored) { color: var(--orange-yellow-crayola); }
 
 .service-content-box { text-align: center; }
 
