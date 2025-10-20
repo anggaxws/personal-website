@@ -686,23 +686,22 @@ body.theme-light .navbar-link.active { color: #111827; font-weight: var(--fw-600
   cursor: not-allowed;
 }
 
-.theme-toggle {
+.theme-toggle-item {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  align-items: center;
+  padding: 10px;
 }
 
 .theme-toggle-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 999px;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   border: 1px solid transparent;
   background: var(--bg-gradient-jet);
   color: var(--white-2);
-  font-size: var(--fs-6);
-  font-weight: var(--fw-500);
   cursor: pointer;
   transition: background var(--transition-1), border-color var(--transition-1), color var(--transition-1);
 }
@@ -714,14 +713,14 @@ body.theme-light .navbar-link.active { color: #111827; font-weight: var(--fw-600
 }
 
 .theme-toggle-btn .theme-icon {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .theme-toggle-btn .theme-icon.moon { display: none; }
 
 body.theme-light .theme-toggle-btn {
   background: #ffffff;
-  color: var(--white-2);
+  color: #374151;
   border-color: rgba(100, 116, 139, 0.2);
 }
 
