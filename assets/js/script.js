@@ -229,3 +229,47 @@ if (certTrack && certSlides.length && certPrevBtn && certNextBtn) {
   window.addEventListener("resize", updateCertSlider);
   updateCertSlider();
 }
+
+
+
+// theme toggle
+const themeToggleBtn = document.querySelector("[data-theme-toggle]");
+const THEME_STORAGE_KEY = "aw-portfolio-theme";
+const avatarImg = document.querySelector(".avatar-box img");
+
+const applyTheme = (theme) => {
+  const isLight = theme === "light";
+  document.body.classList.toggle("theme-light", isLight);
+
+  if (themeToggleBtn) {
+    const textElement = themeToggleBtn.querySelector(".theme-toggle-text");
+    if (textElement) {
+      textElement.textContent = isLight
+        ? "Switch to Dark Mode"
+        : "Switch to Light Mode";
+    }
+    themeToggleBtn.setAttribute(
+      "aria-label",
+      isLight ? "Switch to dark mode" : "Switch to light mode"
+    );
+  }
+
+  if (avatarImg) {
+    const defaultSrc = avatarImg.getAttribute("data-avatar-default") || avatarImg.src;
+    const lightSrc = avatarImg.getAttribute("data-avatar-light");
+    avatarImg.src = isLight && lightSrc ? lightSrc : defaultSrc;
+  }
+};
+
+const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+applyTheme(storedTheme || (prefersLight ? "light" : "dark"));
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener("click", () => {
+    const isLight = document.body.classList.contains("theme-light");
+    const nextTheme = isLight ? "dark" : "light";
+    applyTheme(nextTheme);
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+  });
+}
