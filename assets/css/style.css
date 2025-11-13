@@ -1002,7 +1002,7 @@ body.theme-light .theme-toggle-btn .theme-icon.moon { display: inline-block; }
 }
 
 .timeline-text {
-  color: var(--light-gray);
+  color: var(--white-2);
   font-weight: var(--fw-300);
   line-height: 1.6;
 }
@@ -1700,8 +1700,6 @@ body.theme-light .form-btn:disabled:hover::before {
   }
 
   .skills-item:not(:last-child) { margin-bottom: 25px; }
-
-
 
   /**
    * #PORTFOLIO, BLOG
